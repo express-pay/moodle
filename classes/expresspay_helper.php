@@ -374,7 +374,10 @@ class expresspay_helper
             if ($notifObj->CmdType = 3) {
                 if ($notifObj->Status = 3 || $notifObj->Status = 6) {
                     $this->delivery_cource($transactionrecord);
-                }
+                } else return;
+            }
+            else if ($notifObj->CmdType = 1){
+               return; 
             }
         } else if (!$this->useNotifSignature) {
             $this->delivery_cource($transactionrecord);
