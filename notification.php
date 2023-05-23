@@ -31,6 +31,10 @@ $PAGE->set_heading($pagetitle);
 // Instant, we want this AS QUICK as we can.
 try {
     $notifObj = json_decode($params['data']);
+    if ($notifObj->CmdType == 1){
+        header("HTTP/1.1 200 OK");
+        exit(1);
+    }
     // Callback is provided with internal record ID to match OUR record.
     $transactionrecord = $DB->get_record('paygw_expresspay', [
         'id' => $notifObj->AccountNo,
